@@ -11,7 +11,7 @@
         var cifra = "";//acumulamos todo lo pulsado en la tecla correspondiente
         var acumulado = 0;
         var sumar = false;
-        var restar= false;
+        var restar = false;
 
         function display_numeros(numero) {
 
@@ -21,33 +21,54 @@
 
         function suma() {
 
-            acumulado = acumulado + parseInt(cifra);//cifra es un String, lo pasamos a int para sumarlo
-            document.getElementById("display").value = acumulado;
+
+            if (restar == true) {
+
+                acumulado = acumulado - parseInt(cifra);//cifra es un String, que es lo pasado por el Display, lo pasamos a int para sumarlo
+                document.getElementById("display").value = acumulado;
+            } else {
+                acumulado = acumulado + parseInt(cifra);//cifra es un String, que es lo pasado por el Display, lo pasamos a int para sumarlo
+                document.getElementById("display").value = acumulado;
+
+            }
+
             cifra = "";
             sumar = true;
+            restar = false;
         }
 
-        function resta() {
+        function restamos() {
 
-            if (sumar==true) {
+            if (sumar == true) {
                 acumulado = acumulado + parseInt(cifra);
                 document.getElementById("display").value = acumulado;
-            }else{
-                acumulado = acumulado - parseInt(cifra);
-                document.getElementById("display").value = acumulado;
+            } else {
+
+                if (acumulado == 0) {
+                    acumulado = parseInt(cifra);
+                    document.getElementById("display").value = acumulado;
+
+                } else {
+                    acumulado = acumulado - parseInt(cifra);
+                    document.getElementById("display").value = acumulado;
+                }
+
+
             }
             cifra = "";
             restar = true;
             sumar = false;
-        } 
+        }
 
         function igual() {
 
             if (sumar == true) {
                 document.getElementById("display").value = acumulado + parseInt(cifra);
-            }else if (restar == true) {
+            } else if (restar == true) {
                 document.getElementById("display").value = acumulado - parseInt(cifra);
-            } 
+            }
+            acumulado = parseInt(document.getElementById("display").value);//almecenamos lo que tenemos en pantalla
+            cifra = 0;//al ser 0, podemos inciar una nueva operacion.
 
 
 
@@ -68,7 +89,7 @@
         </tr>
         <tr>
             <td width="26%"><input type="button" id="button" value="+" onclick=suma()></td>
-            <td width="21%"><input type="button" id="button2" value="-" onclick=resta()></td>
+            <td width="21%"><input type="button" id="button" value="-" onclick=restamos()></td>
             <td width="21%"><input type="button" id="button3" value="*"></td>
             <td width="32%"><input type="button" id="button4" value="/"></td>
         </tr>
