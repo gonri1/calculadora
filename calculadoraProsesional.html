@@ -71,6 +71,15 @@
             cifra = 0;//al ser 0, podemos inciar una nueva operacion.
         }
 
+        function reset() {
+            cifra = "";
+            acumulado = 0;
+            sumar = false;
+            restar = false;
+            document.getElementById("display").value = "0";
+        }
+
+
     </script>
 </head>
 
@@ -111,7 +120,8 @@
         <tr>
             <td height="25px"><input type="button" id="num0" value="0" onclick="display_numeros(value)"></td>
             <td height="25px"><input type="button" id="button5" value=","></td>
-            <td height="25px" colspan="2"><input type="button" id="button6" value="=" onclick=igual()></td>
+            <td height="25px"><input type="button" id="button6" value="=" onclick=igual()></td>
+            <td height="25px"><input type="button" id="button6" value="Reset" onclick=reset()></td>
 
         </tr>
 
