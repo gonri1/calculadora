@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora</title>
-    <link rel="stylesheet" href="estilos.css">
-
-
-    <script>
 
         var cifra = "";//acumulamos todo lo pulsado en la tecla correspondiente
         var acumulado = 0;
@@ -38,6 +28,7 @@
             cifra = "";
             sumar = true;
             restar = false;
+            multiplicar = false;
         }
 
         function restamos() {
@@ -61,6 +52,7 @@
             cifra = "";
             restar = true;
             sumar = false;
+            multiplicar = false;
         }
 
         function multiplicacion() {
@@ -71,7 +63,12 @@
                 acumulado = acumulado - parseInt(cifra);
                 document.getElementById("display").value = acumulado;
             } else {
-                acumulado = acumulado * parseInt(cifra);
+                // Si acumulado es 0, asignamos cifra a acumulado
+                if (acumulado == 0) {
+                    acumulado = parseInt(cifra);
+                } else {
+                    acumulado = acumulado * parseInt(cifra);
+                }
                 document.getElementById("display").value = acumulado;
             }
 
@@ -80,6 +77,9 @@
             sumar = false;
             multiplicar = true;
         }
+
+
+
 
 
         function igual() {
@@ -108,56 +108,3 @@
 
 
 
-
-    </script>
-</head>
-
-
-
-<body>
-
-    <h2>Calculadora Profesional</h2>
-    <table width="20%" border="1">
-
-        <tr>
-            <td colspan="4"><input type="text" name="display" class="color_diaplay" id="display" size="25"></td>
-        </tr>
-        <tr>
-            <td width="26%"><input type="button" id="button" value="+" onclick=suma()></td>
-            <td width="21%"><input type="button" id="button" value="-" onclick=restamos()></td>
-            <td width="21%"><input type="button" id="button3" value="*" onclick=multiplicacion()></td>
-            <td width="32%"><input type="button" id="button4" value="/"></td>
-        </tr>
-        <tr>
-            <td height="25px"><input type="button" id="num7" value="7" onclick="display_numeros(value)"></td>
-            <td height="25px"><input type="button" id="num7" value="8" onclick="display_numeros(value)"></td>
-            <td height="25px"><input type="button" id="num7" value="9" onclick="display_numeros(value)"></td>
-
-        </tr>
-        <tr>
-            <td height="25px"><input type="button" id="num4" value="4" onclick="display_numeros(value)"></td>
-            <td height="25px"><input type="button" id="num5" value="5" onclick="display_numeros(value)"></td>
-            <td height="25px"><input type="button" id="num6" value="6" onclick="display_numeros(value)"></td>
-
-        </tr>
-        <tr>
-            <td height="25px"><input type="button" id="num1" value="1" onclick="display_numeros(value)"></td>
-            <td height="25px"><input type="button" id="num2" value="2" onclick="display_numeros(value)"></td>
-            <td height="25px"><input type="button" id="num3" value="3" onclick="display_numeros(value)"></td>
-
-        </tr>
-        <tr>
-            <td height="25px"><input type="button" id="num0" value="0" onclick="display_numeros(value)"></td>
-            <td height="25px"><input type="button" id="button5" value=","></td>
-            <td height="25px"><input type="button" id="button6" value="=" onclick=igual()></td>
-            <td height="25px"><input type="button" id="button6" value="Reset" onclick=reset()></td>
-
-        </tr>
-
-        <script>
-            document.getElementById("display").value = "0";//Esto hace que nos aparezca el 0 por defecto en el display de la pagina
-        </script>
-    </table>
-</body>
-
-</html>
